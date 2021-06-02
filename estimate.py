@@ -1,5 +1,28 @@
 import math
 import unittest
+import random
+
+def wallis(n):
+    value = 1
+    for i in range(1,n+1):
+        value = value*4*pow(i,2)/(4*(pow(i,2)) - 1)
+    return 2*value
+
+def monte_carlo(n):
+    num=0
+    den=0
+    ratio=0
+    for i in range(0,n):
+        a = random.random()
+        b = random.random()
+        d = pow(pow(a,2) + pow(b,2) , 0.5)
+        if(d<=1):
+            num +=1
+            den += 1
+        else:
+            den += 1
+    ratio = float(num/den)
+    return 4*ratio
 
 class TestWallis(unittest.TestCase):
     def test_low_iters(self):
